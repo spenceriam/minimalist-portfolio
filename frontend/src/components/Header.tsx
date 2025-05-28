@@ -19,17 +19,91 @@ const Header = () => {
           className="flex flex-col items-center gap-6"
         >
           <motion.div
-            className="relative"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative group"
+            initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.1,
+              type: "spring",
+              stiffness: 100
+            }}
+            whileHover={{ 
+              scale: 1.1,
+              rotate: 2,
+              transition: { duration: 0.3 }
+            }}
           >
-            <img
-              src="/headshot.jpg"
-              alt="Spencer's headshot"
-              className="w-32 h-32 rounded-full object-cover border-4 border-blue-light/30 shadow-2xl hover:border-blue-light/60 transition-all duration-300 hover:scale-105"
+            {/* Animated background rings */}
+            <motion.div
+              className="absolute -inset-4 rounded-full bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 opacity-75"
+              animate={{ 
+                rotate: 360,
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ 
+                rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+              }}
             />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-light/10 to-cream/10 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+            
+            {/* Secondary ring */}
+            <motion.div
+              className="absolute -inset-2 rounded-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 opacity-60"
+              animate={{ 
+                rotate: -360,
+                scale: [1.1, 1, 1.1]
+              }}
+              transition={{ 
+                rotate: { duration: 6, repeat: Infinity, ease: "linear" },
+                scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+              }}
+            />
+            
+            {/* Main image container */}
+            <div className="relative">
+              <img
+                src="/headshot.jpg"
+                alt="Spencer's headshot"
+                className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-2xl relative z-10 group-hover:border-cyan-300 transition-all duration-500"
+              />
+              
+              {/* Hover overlay with sparkle effect */}
+              <motion.div 
+                className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-400/20 via-cyan-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+                whileHover={{
+                  background: [
+                    "radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.3) 0%, transparent 50%)",
+                    "radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.3) 0%, transparent 50%)",
+                    "radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.3) 0%, transparent 50%)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              
+              {/* Floating particles */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100"
+                  style={{
+                    top: `${20 + i * 15}%`,
+                    left: `${10 + i * 12}%`,
+                  }}
+                  animate={{
+                    y: [-10, -20, -10],
+                    opacity: [0, 1, 0],
+                    scale: [0.5, 1, 0.5]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.2,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+            </div>
           </motion.div>
           
           <div>
