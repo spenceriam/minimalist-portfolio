@@ -1,69 +1,49 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Mail, Download, Sparkles, Code2 } from "lucide-react";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <motion.header 
-      className="text-center space-y-8 mb-16"
-      initial={{ opacity: 0, y: 20 }}
+      className="w-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white p-0 m-0"
+      initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="space-y-6">
-        <motion.div
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <h1 className="text-5xl sm:text-6xl font-light tracking-tight gradient-text mb-4">
-            Spencer
-          </h1>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="bg-blue-medium/20 text-blue-light hover:bg-blue-medium/30 transition-colors border-blue-light/30">
-              <Sparkles className="h-3 w-3 mr-1" />
-              Vibe Coder
-            </Badge>
-            <Badge variant="secondary" className="bg-blue-medium/20 text-cream hover:bg-blue-medium/30 transition-colors border-cream/30">
-              <Code2 className="h-3 w-3 mr-1" />
-              Product Manager
-            </Badge>
+      <div className="max-w-screen-xl mx-auto px-8 py-16">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <motion.div
+              className="relative"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <img
+                src="/headshot.jpg"
+                alt="Spencer's headshot"
+                className="w-24 h-24 rounded-full object-cover border-4 border-white/20 shadow-2xl hover:border-purple-400/50 transition-all duration-300 hover:scale-105"
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-400/20 to-pink-400/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent hover:from-purple-300 hover:to-pink-300 transition-all duration-300">
+                Hi, I'm Spencer
+              </h1>
+              <motion.div
+                className="h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mt-2"
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              />
+            </motion.div>
           </div>
-        </motion.div>
-        
-        <motion.p 
-          className="text-xl text-blue-light max-w-2xl mx-auto text-balance leading-relaxed"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          Relearning the art of software development while building products that matter. 
-          I code with intuition and manage with empathy.
-        </motion.p>
+        </div>
       </div>
-      
-      <motion.div 
-        className="flex flex-col sm:flex-row gap-4 justify-center"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-      >
-        <Button 
-          className="bg-navy-medium hover:bg-navy-dark text-cream border-2 border-blue-light hover:border-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-          size="lg"
-        >
-          <Mail className="h-4 w-4 mr-2" />
-          Let's Connect
-        </Button>
-        <Button 
-          className="bg-navy-medium hover:bg-navy-dark text-cream border-2 border-blue-light hover:border-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-          size="lg"
-        >
-          <Download className="h-4 w-4 mr-2" />
-          Download CV
-        </Button>
-      </motion.div>
     </motion.header>
   );
 };
