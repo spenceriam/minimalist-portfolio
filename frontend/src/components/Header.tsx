@@ -1,35 +1,71 @@
 import { Button } from "@/components/ui/button";
-import { Mail, Download } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Mail, Download, Sparkles, Code2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Header = () => {
   return (
-    <header className="text-center space-y-6 mb-12">
-      <div className="space-y-4">
-        <h1 className="text-4xl sm:text-5xl font-light tracking-tight">
-          Spencer
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
-          Full Stack Developer crafting modern web experiences with clean code and thoughtful design.
-        </p>
+    <motion.header 
+      className="text-center space-y-8 mb-16"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="space-y-6">
+        <motion.div
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <h1 className="text-5xl sm:text-6xl font-light tracking-tight gradient-text mb-4">
+            Spencer
+          </h1>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Badge variant="secondary" className="bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors">
+              <Sparkles className="h-3 w-3 mr-1" />
+              Vibe Coder
+            </Badge>
+            <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors">
+              <Code2 className="h-3 w-3 mr-1" />
+              Product Manager
+            </Badge>
+          </div>
+        </motion.div>
+        
+        <motion.p 
+          className="text-xl text-muted-foreground max-w-2xl mx-auto text-balance leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          Relearning the art of software development while building products that matter. 
+          I code with intuition and manage with empathy.
+        </motion.p>
       </div>
       
-      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+      <motion.div 
+        className="flex flex-col sm:flex-row gap-4 justify-center"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+      >
         <Button 
-          variant="outline" 
-          className="hover:bg-primary hover:text-primary-foreground transition-colors"
+          className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          size="lg"
         >
           <Mail className="h-4 w-4 mr-2" />
-          Get in Touch
+          Let's Connect
         </Button>
         <Button 
-          variant="ghost" 
-          className="hover:bg-secondary transition-colors"
+          variant="outline" 
+          size="lg"
+          className="border-purple-200 hover:bg-purple-50 hover:border-purple-300 transition-all duration-300 transform hover:scale-105"
         >
           <Download className="h-4 w-4 mr-2" />
           Download CV
         </Button>
-      </div>
-    </header>
+      </motion.div>
+    </motion.header>
   );
 };
 
