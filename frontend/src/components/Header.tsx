@@ -55,8 +55,7 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          Relearning the art of software development while building products that matter. 
-          I code with intuition and manage with empathy.
+          I'm a dev relearning the art of software development through vibe coding, wielding AI with raw instinct to craft code. As a product manager, I'm forging a bold path, building products that matter and disrupting the game.
         </motion.p>
       </div>
       
