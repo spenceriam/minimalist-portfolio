@@ -50,16 +50,15 @@ const Header = () => {
         transition={{ duration: 0.5, delay: 0.6 }}
       >
         <Button 
-          className="bg-navy-dark hover:bg-navy-dark/90 text-white border-2 border-navy-dark shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="bg-blue-light hover:bg-cream text-navy-dark border-2 border-blue-light hover:border-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           size="lg"
         >
           <Mail className="h-4 w-4 mr-2" />
           Let's Connect
         </Button>
         <Button 
-          variant="outline" 
+          className="bg-blue-light hover:bg-cream text-navy-dark border-2 border-blue-light hover:border-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           size="lg"
-          className="border-blue-light/50 text-blue-light hover:bg-blue-light/10 hover:border-blue-light transition-all duration-300 transform hover:scale-105"
         >
           <Download className="h-4 w-4 mr-2" />
           Download CV

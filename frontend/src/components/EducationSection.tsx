@@ -51,14 +51,14 @@ const EducationSection = () => {
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ duration: 0.2 }}
         >
-          <GraduationCap className="h-6 w-6 navy-dark" />
+          <GraduationCap className="h-6 w-6 text-blue-light" />
         </motion.div>
-        <h2 className="text-2xl font-medium navy-dark">Education</h2>
+        <h2 className="text-2xl font-medium text-cream">Education</h2>
         <motion.div
           animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
         >
-          <Award className="h-5 w-5 text-yellow-600" />
+          <Award className="h-5 w-5 text-yellow-400" />
         </motion.div>
       </div>
       
@@ -77,18 +77,18 @@ const EducationSection = () => {
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                   <div className="flex-1">
                     <h3 className="text-xl font-medium gradient-text">{edu.degree}</h3>
-                    <p className="text-blue-medium font-medium">{edu.school}</p>
+                    <p className="text-cream font-medium">{edu.school}</p>
                     {edu.vibe && (
-                      <p className="text-sm navy-medium mt-2">{edu.vibe}</p>
+                      <p className="text-sm text-blue-light mt-2">{edu.vibe}</p>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-blue-medium bg-blue-light/20 px-3 py-1 rounded-full shrink-0 border border-blue-medium/20">
+                  <div className="flex items-center gap-2 text-sm text-cream bg-blue-medium/20 px-3 py-1 rounded-full shrink-0 border border-blue-light/30">
                     <Calendar className="h-4 w-4" />
                     <span>{edu.period}</span>
                   </div>
                 </div>
                 
-                <p className="text-blue-medium leading-relaxed mb-4">
+                <p className="text-blue-light leading-relaxed mb-4">
                   {edu.description}
                 </p>
 
@@ -101,7 +101,7 @@ const EducationSection = () => {
                   >
                     <Badge 
                       variant="secondary" 
-                      className="bg-yellow-100 text-yellow-800 hover:bg-yellow-200 transition-all duration-300 border border-yellow-300"
+                      className="bg-yellow-500/20 text-yellow-300 hover:bg-yellow-500/30 transition-all duration-300 border border-yellow-400/30"
                     >
                       <Award className="h-3 w-3 mr-1" />
                       {edu.achievement}
