@@ -4,49 +4,6 @@
 
 @layer base {
   :root {
-    --background: 224 71% 94%;
-    --foreground: 210 100% 6%;
-
-    --card: 224 71% 94%;
-    --card-foreground: 210 100% 6%;
-
-    --popover: 224 71% 94%;
-    --popover-foreground: 210 100% 6%;
-
-    --primary: 210 100% 6%;
-    --primary-foreground: 224 71% 94%;
-
-    --secondary: 215 25% 27%;
-    --secondary-foreground: 224 71% 94%;
-
-    --muted: 215 25% 27%;
-    --muted-foreground: 210 25% 40%;
-
-    --accent: 215 25% 27%;
-    --accent-foreground: 224 71% 94%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 224 71% 94%;
-
-    --border: 210 25% 40%;
-    --input: 210 25% 40%;
-    --ring: 210 100% 6%;
-
-    --radius: 0.75rem;
-
-    /* Custom palette colors */
-    --navy-dark: 210 100% 6%;      /* #001B3A - darkest */
-    --navy-medium: 215 25% 27%;    /* #1B263B - medium dark */
-    --blue-medium: 210 25% 40%;    /* #415A77 - medium */
-    --blue-light: 224 71% 94%;     /* #778DA9 - light */
-    --cream: 60 9% 87%;            /* #E0E1DD - lightest */
-    
-    --gradient-start: 210 100% 6%;
-    --gradient-end: 215 25% 27%;
-    --surface-elevated: 224 71% 94%;
-  }
-
-  .dark {
     --background: 210 100% 6%;
     --foreground: 224 71% 94%;
 
@@ -60,22 +17,65 @@
     --primary-foreground: 210 100% 6%;
 
     --secondary: 210 25% 40%;
-    --secondary-foreground: 224 71% 94%;
+    --secondary-foreground: 60 9% 87%;
 
     --muted: 210 25% 40%;
     --muted-foreground: 224 71% 94%;
 
     --accent: 210 25% 40%;
-    --accent-foreground: 224 71% 94%;
+    --accent-foreground: 60 9% 87%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9% 87%;
+
+    --border: 224 71% 94%;
+    --input: 215 25% 27%;
+    --ring: 224 71% 94%;
+
+    --radius: 0.75rem;
+
+    /* Custom palette colors */
+    --navy-dark: 210 100% 6%;      /* #001B3A - darkest */
+    --navy-medium: 215 25% 27%;    /* #1B263B - medium dark */
+    --blue-medium: 210 25% 40%;    /* #415A77 - medium */
+    --blue-light: 224 71% 94%;     /* #778DA9 - light */
+    --cream: 60 9% 87%;            /* #E0E1DD - lightest */
+    
+    --gradient-start: 210 100% 6%;
+    --gradient-end: 215 25% 27%;
+    --surface-elevated: 215 25% 27%;
+  }
+
+  .dark {
+    --background: 224 71% 94%;
+    --foreground: 210 100% 6%;
+
+    --card: 60 9% 87%;
+    --card-foreground: 210 100% 6%;
+
+    --popover: 60 9% 87%;
+    --popover-foreground: 210 100% 6%;
+
+    --primary: 210 100% 6%;
+    --primary-foreground: 224 71% 94%;
+
+    --secondary: 224 71% 94%;
+    --secondary-foreground: 210 100% 6%;
+
+    --muted: 224 71% 94%;
+    --muted-foreground: 210 100% 6%;
+
+    --accent: 224 71% 94%;
+    --accent-foreground: 210 100% 6%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 224 71% 94%;
 
-    --border: 210 25% 40%;
-    --input: 210 25% 40%;
-    --ring: 224 71% 94%;
+    --border: 210 100% 6%;
+    --input: 224 71% 94%;
+    --ring: 210 100% 6%;
 
-    --surface-elevated: 215 25% 27%;
+    --surface-elevated: 60 9% 87%;
   }
 }
 
@@ -99,19 +99,19 @@
   }
   
   .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--navy-dark)), hsl(var(--navy-medium)));
+    background: linear-gradient(135deg, hsl(var(--blue-light)), hsl(var(--cream)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   
   .gradient-bg {
-    background: linear-gradient(135deg, hsl(var(--cream)), hsl(var(--blue-light)));
+    background: linear-gradient(135deg, hsl(var(--navy-dark)), hsl(var(--navy-medium)));
   }
   
   .glass-effect {
     @apply backdrop-blur-sm border;
-    background: hsla(var(--cream), 0.8);
+    background: hsla(var(--navy-medium), 0.8);
     border-color: hsla(var(--blue-light), 0.3);
   }
 
