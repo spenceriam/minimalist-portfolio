@@ -18,22 +18,22 @@ const EducationSection = () => {
       degree: "Bachelor of Science - Information Technology",
       school: "University of Phoenix",
       period: "2018 - 2020",
-      description: "Bachelor's degree in Science with a focus on advanced software development. Developed strong foundations in modern programming practices and system design.",
-      achievement: "Nominated and accepted into The National Society of Leadership and Success in 2020",
+      description: "Advanced software development focus with modern programming practices and system design principles.",
       vibe: "🎓 Advanced development focus"
     },
     {
       degree: "Bachelor's Degree - Technical Management",
       school: "DeVry University, College of Business & Management",
       period: "2015 - 2016",
-      description: "Specialized in Information Technology with Global Supply Chain coursework. Gained valuable business perspective that bridges technical and management domains. (Transferred to University of Phoenix)",
+      description: "Information Technology specialization with Global Supply Chain coursework, bridging technical and business domains.",
       vibe: "🌐 Business-tech bridge"
     },
     {
       degree: "Associate's Degree - Computer Science, Computer Network Systems",
       school: "ITT Technical Institute",
       period: "2008 - 2010",
-      description: "Foundation in computer science principles and network systems. Built core technical skills that launched my career in technology.",
+      description: "Foundation in computer science principles and network systems that launched my technology career.",
+      achievement: "Nominated and accepted into The National Society of Leadership and Success",
       vibe: "💻 Technical foundation"
     }
   ];
