@@ -21,11 +21,11 @@ const Header = () => {
             Spencer
           </h1>
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="secondary" className="bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors">
+            <Badge variant="secondary" className="bg-blue-light/20 navy-dark hover:bg-blue-light/30 transition-colors border-blue-medium/30">
               <Sparkles className="h-3 w-3 mr-1" />
               Vibe Coder
             </Badge>
-            <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors">
+            <Badge variant="secondary" className="bg-navy-medium/10 navy-dark hover:bg-navy-medium/20 transition-colors border-navy-medium/30">
               <Code2 className="h-3 w-3 mr-1" />
               Product Manager
             </Badge>
@@ -33,7 +33,7 @@ const Header = () => {
         </motion.div>
         
         <motion.p 
-          className="text-xl text-muted-foreground max-w-2xl mx-auto text-balance leading-relaxed"
+          className="text-xl text-blue-medium max-w-2xl mx-auto text-balance leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -50,7 +50,7 @@ const Header = () => {
         transition={{ duration: 0.5, delay: 0.6 }}
       >
         <Button 
-          className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="bg-navy-dark hover:bg-navy-medium text-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           size="lg"
         >
           <Mail className="h-4 w-4 mr-2" />
@@ -59,7 +59,7 @@ const Header = () => {
         <Button 
           variant="outline" 
           size="lg"
-          className="border-purple-200 hover:bg-purple-50 hover:border-purple-300 transition-all duration-300 transform hover:scale-105"
+          className="border-blue-medium/30 navy-dark hover:bg-blue-light/20 hover:border-blue-medium transition-all duration-300 transform hover:scale-105"
         >
           <Download className="h-4 w-4 mr-2" />
           Download CV

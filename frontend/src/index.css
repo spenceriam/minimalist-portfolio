@@ -4,75 +4,78 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 224 71% 94%;
+    --foreground: 210 100% 6%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card: 224 71% 94%;
+    --card-foreground: 210 100% 6%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --popover: 224 71% 94%;
+    --popover-foreground: 210 100% 6%;
 
-    --primary: 262 83% 58%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 210 100% 6%;
+    --primary-foreground: 224 71% 94%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
+    --secondary: 215 25% 27%;
+    --secondary-foreground: 224 71% 94%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 25% 27%;
+    --muted-foreground: 210 25% 40%;
 
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
+    --accent: 215 25% 27%;
+    --accent-foreground: 224 71% 94%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 224 71% 94%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 262 83% 58%;
+    --border: 210 25% 40%;
+    --input: 210 25% 40%;
+    --ring: 210 100% 6%;
 
     --radius: 0.75rem;
 
-    /* Custom colors for vibe coding */
-    --gradient-start: 262 83% 58%;
-    --gradient-end: 213 93% 68%;
-    --accent-purple: 262 83% 58%;
-    --accent-blue: 213 93% 68%;
-    --accent-pink: 316 73% 69%;
-    --surface-elevated: 0 0% 98%;
+    /* Custom palette colors */
+    --navy-dark: 210 100% 6%;      /* #001B3A - darkest */
+    --navy-medium: 215 25% 27%;    /* #1B263B - medium dark */
+    --blue-medium: 210 25% 40%;    /* #415A77 - medium */
+    --blue-light: 224 71% 94%;     /* #778DA9 - light */
+    --cream: 60 9% 87%;            /* #E0E1DD - lightest */
+    
+    --gradient-start: 210 100% 6%;
+    --gradient-end: 215 25% 27%;
+    --surface-elevated: 224 71% 94%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 210 100% 6%;
+    --foreground: 224 71% 94%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 215 25% 27%;
+    --card-foreground: 224 71% 94%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 215 25% 27%;
+    --popover-foreground: 224 71% 94%;
 
-    --primary: 262 83% 58%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 224 71% 94%;
+    --primary-foreground: 210 100% 6%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 25% 40%;
+    --secondary-foreground: 224 71% 94%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 210 25% 40%;
+    --muted-foreground: 224 71% 94%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 210 25% 40%;
+    --accent-foreground: 224 71% 94%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 224 71% 94%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 262 83% 58%;
+    --border: 210 25% 40%;
+    --input: 210 25% 40%;
+    --ring: 224 71% 94%;
 
-    --surface-elevated: 217.2 32.6% 17.5%;
+    --surface-elevated: 215 25% 27%;
   }
 }
 
@@ -96,14 +99,31 @@
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent;
+    background: linear-gradient(135deg, hsl(var(--navy-dark)), hsl(var(--navy-medium)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50;
+    background: linear-gradient(135deg, hsl(var(--cream)), hsl(var(--blue-light)));
   }
   
   .glass-effect {
-    @apply backdrop-blur-sm bg-white/80 border border-white/20;
+    @apply backdrop-blur-sm border;
+    background: hsla(var(--cream), 0.8);
+    border-color: hsla(var(--blue-light), 0.3);
   }
+
+  .navy-dark { color: hsl(var(--navy-dark)); }
+  .navy-medium { color: hsl(var(--navy-medium)); }
+  .blue-medium { color: hsl(var(--blue-medium)); }
+  .blue-light { color: hsl(var(--blue-light)); }
+  .cream { color: hsl(var(--cream)); }
+  
+  .bg-navy-dark { background-color: hsl(var(--navy-dark)); }
+  .bg-navy-medium { background-color: hsl(var(--navy-medium)); }
+  .bg-blue-medium { background-color: hsl(var(--blue-medium)); }
+  .bg-blue-light { background-color: hsl(var(--blue-light)); }
+  .bg-cream { background-color: hsl(var(--cream)); }
 }

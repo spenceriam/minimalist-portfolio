@@ -17,9 +17,9 @@ const GithubSection = () => {
           whileHover={{ rotate: 360 }}
           transition={{ duration: 0.5 }}
         >
-          <Github className="h-6 w-6 text-purple-600" />
+          <Github className="h-6 w-6 navy-dark" />
         </motion.div>
-        <h2 className="text-2xl font-medium">GitHub</h2>
+        <h2 className="text-2xl font-medium navy-dark">GitHub</h2>
       </div>
       
       <motion.div
@@ -31,11 +31,11 @@ const GithubSection = () => {
             <div className="flex items-start justify-between mb-6">
               <div>
                 <h3 className="text-xl font-medium mb-2 gradient-text">@spenceriam</h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
+                <p className="text-blue-medium mb-4 leading-relaxed">
                   Building modern web applications with clean, maintainable code. 
                   Learning in public and shipping with passion.
                 </p>
-                <div className="flex items-center gap-2 text-sm text-purple-600">
+                <div className="flex items-center gap-2 text-sm navy-medium">
                   <Zap className="h-4 w-4" />
                   <span>Currently exploring React & TypeScript</span>
                 </div>
@@ -43,7 +43,7 @@ const GithubSection = () => {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="border-purple-200 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-500 hover:text-white hover:border-transparent transition-all duration-300 transform hover:scale-105"
+                className="border-blue-medium/30 navy-dark hover:bg-navy-dark hover:text-cream hover:border-navy-dark transition-all duration-300 transform hover:scale-105"
                 asChild
               >
                 <a 
@@ -60,14 +60,14 @@ const GithubSection = () => {
             
             <div className="grid grid-cols-2 gap-6 text-sm">
               <motion.div 
-                className="flex items-center gap-2 text-muted-foreground hover:text-purple-600 transition-colors cursor-pointer"
+                className="flex items-center gap-2 text-blue-medium hover:text-navy-dark transition-colors cursor-pointer"
                 whileHover={{ scale: 1.05 }}
               >
                 <Star className="h-4 w-4" />
                 <span>Featured repositories</span>
               </motion.div>
               <motion.div 
-                className="flex items-center gap-2 text-muted-foreground hover:text-blue-600 transition-colors cursor-pointer"
+                className="flex items-center gap-2 text-blue-medium hover:text-navy-dark transition-colors cursor-pointer"
                 whileHover={{ scale: 1.05 }}
               >
                 <GitFork className="h-4 w-4" />

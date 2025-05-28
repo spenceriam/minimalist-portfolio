@@ -60,14 +60,14 @@ const WorkExperienceSection = () => {
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
         >
-          <Briefcase className="h-6 w-6 text-blue-600" />
+          <Briefcase className="h-6 w-6 navy-dark" />
         </motion.div>
-        <h2 className="text-2xl font-medium">Work Experience</h2>
+        <h2 className="text-2xl font-medium navy-dark">Work Experience</h2>
         <motion.div
           animate={{ rotate: [0, 10, -10, 0] }}
           transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
         >
-          <TrendingUp className="h-5 w-5 text-green-500" />
+          <TrendingUp className="h-5 w-5 text-green-600" />
         </motion.div>
       </div>
       
@@ -86,22 +86,22 @@ const WorkExperienceSection = () => {
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                   <div className="flex-1">
                     <h3 className="text-xl font-medium gradient-text">{exp.title}</h3>
-                    <p className="text-muted-foreground font-medium">{exp.company}</p>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+                    <p className="text-blue-medium font-medium">{exp.company}</p>
+                    <div className="flex items-center gap-2 text-sm text-blue-medium mt-1">
                       <MapPin className="h-3 w-3" />
                       <span>{exp.location}</span>
                     </div>
                     {exp.vibe && (
-                      <p className="text-sm text-purple-600 mt-2">{exp.vibe}</p>
+                      <p className="text-sm navy-medium mt-2">{exp.vibe}</p>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground bg-purple-50 px-3 py-1 rounded-full shrink-0">
+                  <div className="flex items-center gap-2 text-sm text-blue-medium bg-blue-light/20 px-3 py-1 rounded-full shrink-0 border border-blue-medium/20">
                     <Calendar className="h-4 w-4" />
                     <span>{exp.period}</span>
                   </div>
                 </div>
                 
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-blue-medium leading-relaxed">
                   {exp.description}
                 </p>
               </CardContent>
