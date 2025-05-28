@@ -129,7 +129,7 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          I'm an AI-enabled product manager/analyst turn dev, rewiring my dev roots through vibe coding, unleashing AI with pure gut to forge killer code. I'm blazing a fearless trail, crafting products that hit hard and flipping the industry upside down.
+          I'm an AI-enabled product manager/analyst, rediscovering coding through vibe-driven AI, crafting impactful solutions with bold instinct. I'm paving a daring path, building products that resonate and redefining what's possible in tech.
         </motion.p>
       </div>
       
