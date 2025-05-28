@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Download, Sparkles, Code2 } from "lucide-react";
+import { Mail, Download, Sparkles, Code2, BarChart3, Zap, Settings } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Header = () => {
@@ -110,15 +110,57 @@ const Header = () => {
             <h1 className="text-5xl sm:text-6xl font-light tracking-tight gradient-text mb-4">
               Hi, I'm Spencer
             </h1>
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Badge variant="secondary" className="bg-blue-medium/20 text-blue-light hover:bg-blue-medium/30 transition-colors border-blue-light/30">
-                <Sparkles className="h-3 w-3 mr-1" />
-                Vibe Coder
-              </Badge>
-              <Badge variant="secondary" className="bg-blue-medium/20 text-cream hover:bg-blue-medium/30 transition-colors border-cream/30">
-                <Code2 className="h-3 w-3 mr-1" />
-                Product Manager
-              </Badge>
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-4 max-w-2xl">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+              >
+                <Badge variant="secondary" className="bg-blue-medium/20 text-blue-light hover:bg-blue-medium/30 transition-colors border-blue-light/30">
+                  <Sparkles className="h-3 w-3 mr-1" />
+                  Vibe Coder
+                </Badge>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+              >
+                <Badge variant="secondary" className="bg-blue-medium/20 text-cream hover:bg-blue-medium/30 transition-colors border-cream/30">
+                  <Code2 className="h-3 w-3 mr-1" />
+                  Product Manager
+                </Badge>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+              >
+                <Badge variant="secondary" className="bg-purple-500/20 text-purple-200 hover:bg-purple-500/30 transition-colors border-purple-300/30">
+                  <BarChart3 className="h-3 w-3 mr-1" />
+                  Analyst
+                </Badge>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
+              >
+                <Badge variant="secondary" className="bg-cyan-500/20 text-cyan-200 hover:bg-cyan-500/30 transition-colors border-cyan-300/30">
+                  <Zap className="h-3 w-3 mr-1" />
+                  Future Tech Leader
+                </Badge>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.7 }}
+              >
+                <Badge variant="secondary" className="bg-emerald-500/20 text-emerald-200 hover:bg-emerald-500/30 transition-colors border-emerald-300/30">
+                  <Settings className="h-3 w-3 mr-1" />
+                  Solutions Enabler
+                </Badge>
+              </motion.div>
             </div>
           </div>
         </motion.div>
