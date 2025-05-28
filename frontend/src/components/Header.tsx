@@ -116,7 +116,7 @@ const Header = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
-                <Badge variant="secondary" className="bg-blue-medium/20 text-blue-light hover:bg-blue-medium/30 transition-colors border-blue-light/30">
+                <Badge variant="secondary" className="bg-pink-500/20 text-pink-200 hover:bg-pink-500/30 transition-colors border-pink-300/30">
                   <Sparkles className="h-3 w-3 mr-1" />
                   Vibe Coder
                 </Badge>
@@ -126,7 +126,7 @@ const Header = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.4 }}
               >
-                <Badge variant="secondary" className="bg-blue-medium/20 text-cream hover:bg-blue-medium/30 transition-colors border-cream/30">
+                <Badge variant="secondary" className="bg-orange-500/20 text-orange-200 hover:bg-orange-500/30 transition-colors border-orange-300/30">
                   <Code2 className="h-3 w-3 mr-1" />
                   Product Manager
                 </Badge>
