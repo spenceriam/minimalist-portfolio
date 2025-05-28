@@ -41,7 +41,7 @@ const GithubSection = () => {
                 </div>
               </div>
               <Button 
-                className="bg-blue-light hover:bg-cream text-navy-dark border-2 border-blue-light hover:border-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="bg-navy-medium hover:bg-navy-dark text-cream border-2 border-blue-light hover:border-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 size="sm"
                 asChild
               >
