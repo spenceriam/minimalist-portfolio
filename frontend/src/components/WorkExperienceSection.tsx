@@ -1,42 +1,49 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Briefcase, Calendar, TrendingUp } from "lucide-react";
+import { Briefcase, Calendar, TrendingUp, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface Experience {
   title: string;
   company: string;
   period: string;
+  location: string;
   description: string;
-  technologies: string[];
   vibe?: string;
 }
 
 const WorkExperienceSection = () => {
   const experiences: Experience[] = [
     {
-      title: "Senior Frontend Developer",
-      company: "Tech Company",
-      period: "2022 - Present",
-      description: "Leading development of modern web applications while rediscovering the joy of coding. Bridging the gap between technical execution and product vision.",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Next.js"],
-      vibe: "🚀 Building with purpose"
+      title: "Senior Business Analyst",
+      company: "Zebra Technologies",
+      period: "Sep 2018 - Present",
+      location: "Lincolnshire, IL",
+      description: "Leading pre-sales quoting solutions in Salesforce as both Business Analyst and Product Owner. Specializing in requirements gathering, solution wireframing, and cross-functional collaboration with IT development teams. Translating complex business needs into actionable development solutions.",
+      vibe: "🎯 Product ownership mindset"
     },
     {
-      title: "Product Manager / Developer",
-      company: "Digital Agency",
-      period: "2020 - 2022",
-      description: "Wore multiple hats - from user research to code deployment. Learned that the best products come from understanding both the 'why' and the 'how'.",
-      technologies: ["JavaScript", "Node.js", "React", "PostgreSQL"],
-      vibe: "🎯 Product-first mindset"
+      title: "Enterprise Systems Analyst II",
+      company: "Zebra Technologies",
+      period: "Feb 2013 - Sep 2018",
+      location: "Lincolnshire, IL",
+      description: "Business Systems Analyst specializing in Oracle ERP WMS and Inventory systems. Led shipping execution using Creative Logistics Solutions and Bluejay's Kewill/Parcel. Designed and implemented solutions while conducting comprehensive system testing and cross-functional collaboration.",
+      vibe: "⚙️ Systems integration expert"
     },
     {
-      title: "Frontend Developer",
-      company: "Startup",
-      period: "2019 - 2020",
-      description: "Started my journey in the fast-paced startup world. Every day was a learning opportunity, every bug was a teacher.",
-      technologies: ["HTML", "CSS", "JavaScript", "Vue.js"],
-      vibe: "🌱 Growth mindset"
+      title: "Client System Administrator II",
+      company: "Zebra Technologies",
+      period: "Dec 2011 - Feb 2013",
+      location: "Vernon Hills, IL",
+      description: "Help Desk administrator managing tickets across multiple systems including Active Directory, Exchange, Oracle Applications, and Java applications. Focused on delivering high-quality customer service and maintaining security compliance.",
+      vibe: "🛠️ Problem-solving focused"
+    },
+    {
+      title: "Regional IT Support",
+      company: "Passages Hospice",
+      period: "Feb 2010 - Sep 2011",
+      location: "Swansea, IL",
+      description: "Provided comprehensive IT support across multiple office locations, managing everything from mobile devices to networking equipment. Handled inventory management, staff training, and created marketing materials while maintaining 24/7 support availability.",
+      vibe: "🌐 Multi-location support"
     }
   ];
 
@@ -77,39 +84,26 @@ const WorkExperienceSection = () => {
             <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 glass-effect">
               <CardContent className="p-8">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-medium gradient-text">{exp.title}</h3>
                     <p className="text-muted-foreground font-medium">{exp.company}</p>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+                      <MapPin className="h-3 w-3" />
+                      <span>{exp.location}</span>
+                    </div>
                     {exp.vibe && (
-                      <p className="text-sm text-purple-600 mt-1">{exp.vibe}</p>
+                      <p className="text-sm text-purple-600 mt-2">{exp.vibe}</p>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground bg-purple-50 px-3 py-1 rounded-full">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground bg-purple-50 px-3 py-1 rounded-full shrink-0">
                     <Calendar className="h-4 w-4" />
                     <span>{exp.period}</span>
                   </div>
                 </div>
                 
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {exp.description}
                 </p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech, techIndex) => (
-                    <motion.div
-                      key={techIndex}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Badge 
-                        variant="secondary" 
-                        className="text-xs font-normal bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 hover:from-purple-200 hover:to-blue-200 transition-all duration-300 cursor-pointer"
-                      >
-                        {tech}
-                      </Badge>
-                    </motion.div>
-                  ))}
-                </div>
               </CardContent>
             </Card>
           </motion.div>
