@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import GithubSection from "@/components/GithubSection";
+import EducationSection from "@/components/EducationSection";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
 import { motion } from "framer-motion";
 
@@ -17,6 +18,7 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <GithubSection />
+            <EducationSection />
             <WorkExperienceSection />
           </motion.div>
           
