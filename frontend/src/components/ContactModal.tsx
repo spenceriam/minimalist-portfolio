@@ -25,21 +25,18 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     {
       icon: Mail,
       label: "Email",
-      value: "spencerfrancisco@gmail.com",
       href: "mailto:spencerfrancisco@gmail.com",
       color: "from-purple-400 to-pink-400"
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      value: "Spencer Francisco",
       href: "https://www.linkedin.com/in/spencerfrancisco/",
       color: "from-blue-400 to-purple-400"
     },
     {
       icon: Twitter,
       label: "Twitter/X",
-      value: "@spencer_i_am",
       href: "https://x.com/spencer_i_am",
       color: "from-purple-400 to-indigo-400"
     }
@@ -136,9 +133,6 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                         <h3 className="font-semibold text-cream group-hover:text-blue-light transition-colors">
                           {method.label}
                         </h3>
-                        <p className="text-sm text-blue-light group-hover:text-cream transition-colors break-all">
-                          {method.value}
-                        </p>
                       </CardContent>
                     </Card>
                   </motion.a>
@@ -157,7 +151,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     Or send me a message
                   </h3>
                   <p className="text-blue-light">
-                    I'll get back to you within 24 hours
+                    I'll get back to you as soon as possible
                   </p>
                 </div>
 
