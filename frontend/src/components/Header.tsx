@@ -194,7 +194,7 @@ const Header = () => {
           asChild
         >
           <a 
-            href="/Spencer Franicsco - Resume.pdf" 
+            href="/Spencer Francisco - Resume.pdf" 
             download
             className="flex items-center"
           >
