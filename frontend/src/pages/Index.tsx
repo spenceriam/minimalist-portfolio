@@ -29,7 +29,7 @@ const Index = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p>© 2024 Spencer. Built with React, Tailwind CSS & good vibes ✨</p>
+            <p>Created by Spencer with Von.dev. Built with React, Tailwind CSS & good vibes ✨</p>
           </motion.footer>
         </div>
       </div>
