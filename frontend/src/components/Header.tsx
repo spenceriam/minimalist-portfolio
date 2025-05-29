@@ -3,7 +3,11 @@ import { Badge } from "@/components/ui/badge";
 import { Mail, Download, Sparkles, Code2, BarChart3, Zap, Settings } from "lucide-react";
 import { motion } from "framer-motion";
 
-const Header = () => {
+interface HeaderProps {
+  onConnectClick?: () => void;
+}
+
+const Header = ({ onConnectClick }: HeaderProps) => {
   return (
     <motion.header 
       className="text-center space-y-8 mb-16"
@@ -182,6 +186,7 @@ const Header = () => {
         transition={{ duration: 0.5, delay: 0.6 }}
       >
         <Button 
+          onClick={onConnectClick}
           className="bg-navy-medium hover:bg-navy-dark text-cream border-2 border-blue-light hover:border-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           size="lg"
         >
