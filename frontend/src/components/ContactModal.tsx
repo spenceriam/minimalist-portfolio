@@ -13,6 +13,8 @@ interface ContactModalProps {
 }
 
 const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
+  console.log("ContactModal rendered with isOpen:", isOpen);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -56,6 +58,8 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     // Form submission logic will be added later
   };
 
+  console.log("About to render AnimatePresence, isOpen:", isOpen);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -66,6 +70,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={onClose}
         >
+          {console.log("Modal content is rendering!")}
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
           

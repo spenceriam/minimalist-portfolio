@@ -11,6 +11,15 @@ import { MessageCircle } from "lucide-react";
 const Index = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
+  console.log("Index component rendered, isContactModalOpen:", isContactModalOpen);
+
+  const handleConnectClick = () => {
+    console.log("Let's Connect button clicked!");
+    console.log("Current state before:", isContactModalOpen);
+    setIsContactModalOpen(true);
+    console.log("State should now be true");
+  };
+
   return (
     <div className="min-h-screen bg-navy-dark text-cream m-0 p-0">
       <div className="max-w-4xl mx-auto px-6 py-12 space-y-16">
@@ -35,7 +44,7 @@ const Index = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Button
-              onClick={() => setIsContactModalOpen(true)}
+              onClick={handleConnectClick}
               className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3"
               size="lg"
             >
@@ -59,7 +68,10 @@ const Index = () => {
       {/* Contact Modal */}
       <ContactModal 
         isOpen={isContactModalOpen} 
-        onClose={() => setIsContactModalOpen(false)} 
+        onClose={() => {
+          console.log("Modal close requested");
+          setIsContactModalOpen(false);
+        }} 
       />
     </div>
   );
