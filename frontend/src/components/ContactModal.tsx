@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -53,19 +52,32 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic will be added later
     console.log("Form submitted:", formData);
+    // Form submission logic will be added later
   };
 
+  if (!isOpen) return null;
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl w-full mx-4 p-0 border-0 bg-transparent shadow-none overflow-hidden">
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        onClick={onClose}
+      >
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+        
+        {/* Modal Content */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"
+          className="relative w-full max-w-2xl mx-4 rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
         >
           {/* Glassmorphism overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-xl" />
@@ -75,20 +87,20 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
             onClick={onClose}
             variant="ghost"
             size="icon"
-            className="absolute top-4 right-4 z-10 text-cream hover:text-purple-300 hover:bg-white/10 rounded-full"
+            className="absolute top-4 right-4 z-10 text-white hover:text-purple-300 hover:bg-white/10 rounded-full"
           >
             <X className="h-5 w-5" />
           </Button>
 
           <div className="relative p-8 space-y-8">
-            <DialogHeader className="text-center space-y-4">
-              <DialogTitle className="text-3xl font-bold text-cream">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl font-bold text-white">
                 Let's Connect
-              </DialogTitle>
-              <p className="text-blue-light text-lg">
+              </h2>
+              <p className="text-blue-200 text-lg">
                 Ready to collaborate? Choose your preferred way to reach out.
               </p>
-            </DialogHeader>
+            </div>
 
             {/* Contact Method Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -110,10 +122,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                       <div className={`w-12 h-12 mx-auto rounded-full bg-gradient-to-r ${method.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                         <method.icon className="h-6 w-6 text-white" />
                       </div>
-                      <h3 className="font-semibold text-cream group-hover:text-purple-300 transition-colors">
+                      <h3 className="font-semibold text-white group-hover:text-purple-300 transition-colors">
                         {method.label}
                       </h3>
-                      <p className="text-sm text-blue-light group-hover:text-purple-200 transition-colors">
+                      <p className="text-sm text-blue-200 group-hover:text-purple-200 transition-colors">
                         {method.value}
                       </p>
                     </CardContent>
@@ -130,10 +142,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
               className="space-y-6"
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-cream mb-2">
+                <h3 className="text-xl font-semibold text-white mb-2">
                   Or send me a message
                 </h3>
-                <p className="text-blue-light">
+                <p className="text-blue-200">
                   I'll get back to you within 24 hours
                 </p>
               </div>
@@ -141,7 +153,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-cream">
+                    <Label htmlFor="name" className="text-white">
                       Name
                     </Label>
                     <Input
@@ -149,13 +161,13 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="bg-white/10 border-white/20 text-cream placeholder:text-blue-light focus:border-purple-400 focus:ring-purple-400/20"
+                      className="bg-white/10 border-white/20 text-white placeholder:text-blue-200 focus:border-purple-400 focus:ring-purple-400/20"
                       placeholder="Your name"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-cream">
+                    <Label htmlFor="email" className="text-white">
                       Email
                     </Label>
                     <Input
@@ -164,14 +176,14 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="bg-white/10 border-white/20 text-cream placeholder:text-blue-light focus:border-purple-400 focus:ring-purple-400/20"
+                      className="bg-white/10 border-white/20 text-white placeholder:text-blue-200 focus:border-purple-400 focus:ring-purple-400/20"
                       placeholder="your@email.com"
                       required
                     />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-cream">
+                  <Label htmlFor="message" className="text-white">
                     Message
                   </Label>
                   <Textarea
@@ -179,7 +191,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="bg-white/10 border-white/20 text-cream placeholder:text-blue-light focus:border-purple-400 focus:ring-purple-400/20 min-h-[120px] resize-none"
+                    className="bg-white/10 border-white/20 text-white placeholder:text-blue-200 focus:border-purple-400 focus:ring-purple-400/20 min-h-[120px] resize-none"
                     placeholder="Tell me about your project or just say hello..."
                     required
                   />
@@ -199,8 +211,8 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
             </motion.div>
           </div>
         </motion.div>
-      </DialogContent>
-    </Dialog>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
