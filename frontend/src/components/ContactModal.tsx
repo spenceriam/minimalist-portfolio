@@ -80,7 +80,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative w-full max-w-2xl mx-4 rounded-2xl overflow-hidden glass-effect shadow-2xl"
+            className="relative w-full max-w-2xl mx-4 rounded-2xl overflow-hidden bg-navy-dark/95 backdrop-blur-xl border border-blue-light/20 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -128,7 +128,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     whileTap={{ scale: 0.98 }}
                     className="group"
                   >
-                    <Card className="border-0 glass-effect hover:bg-navy-medium/60 transition-all duration-300 cursor-pointer h-full">
+                    <Card className="border-0 bg-navy-medium/80 backdrop-blur-sm hover:bg-navy-medium/90 transition-all duration-300 cursor-pointer h-full">
                       <CardContent className="p-6 text-center space-y-3 h-full flex flex-col justify-center">
                         <div className={`w-12 h-12 mx-auto rounded-full bg-gradient-to-r ${method.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                           <method.icon className="h-6 w-6 text-white" />
