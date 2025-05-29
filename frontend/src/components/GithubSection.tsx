@@ -1,9 +1,18 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Star, GitFork, Zap } from "lucide-react";
+import { Github, ExternalLink, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
 const GithubSection = () => {
+  const featuredProjects = [
+    { name: "HEICscape", url: "https://github.com/spenceriam/HEICscape" },
+    { name: "InkFrame", url: "https://github.com/spenceriam/InkFrame" },
+    { name: "type-B", url: "https://github.com/spenceriam/type-B" },
+    { name: "meowgenda", url: "https://github.com/spenceriam/meowgenda" },
+    { name: "StorFlo", url: "https://github.com/spenceriam/StorFlo" },
+    { name: "OnboardEase", url: "https://github.com/spenceriam/OnboardEase" }
+  ];
+
   return (
     <motion.section 
       className="space-y-6"
@@ -57,21 +66,35 @@ const GithubSection = () => {
               </Button>
             </div>
             
-            <div className="grid grid-cols-2 gap-6 text-sm">
-              <motion.div 
-                className="flex items-center gap-2 text-blue-light hover:text-cream transition-colors cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Star className="h-4 w-4" />
-                <span>Featured repositories</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center gap-2 text-blue-light hover:text-cream transition-colors cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-              >
-                <GitFork className="h-4 w-4" />
-                <span>Open source contributions</span>
-              </motion.div>
+            <div className="space-y-4">
+              <h4 className="text-lg font-medium text-cream">Featured Projects</h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {featuredProjects.map((project, index) => (
+                  <motion.a
+                    key={project.name}
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative p-3 rounded-lg bg-navy-medium/50 border border-blue-light/20 hover:border-blue-light/60 transition-all duration-300 hover:bg-navy-medium/80"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-cream group-hover:text-blue-light transition-colors">
+                        {project.name}
+                      </span>
+                      <ExternalLink className="h-3 w-3 text-blue-light/60 group-hover:text-blue-light transition-colors" />
+                    </div>
+                    <motion.div
+                      className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-light/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      layoutId={`project-bg-${project.name}`}
+                    />
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </CardContent>
         </Card>
