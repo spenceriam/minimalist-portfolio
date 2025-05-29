@@ -191,9 +191,16 @@ const Header = () => {
         <Button 
           className="bg-navy-medium hover:bg-navy-dark text-cream border-2 border-blue-light hover:border-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           size="lg"
+          asChild
         >
-          <Download className="h-4 w-4 mr-2" />
-          Download CV
+          <a 
+            href="/Spencer Franicsco - Resume.pdf" 
+            download
+            className="flex items-center"
+          >
+            <Download className="h-4 w-4 mr-2" />
+            Download Resume
+          </a>
         </Button>
       </motion.div>
     </motion.header>
