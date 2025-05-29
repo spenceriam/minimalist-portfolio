@@ -72,7 +72,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
         >
           {console.log("Modal content is rendering!")}
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-navy-dark/80 backdrop-blur-md" />
+          <div className="absolute inset-0 bg-navy-dark/90 backdrop-blur-md" />
           
           {/* Modal Content */}
           <motion.div
