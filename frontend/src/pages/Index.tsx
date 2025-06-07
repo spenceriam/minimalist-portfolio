@@ -11,10 +11,10 @@ export default function Index() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen w-full m-0 p-0 bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="relative min-h-screen w-full m-0 p-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20">
       <AnimatedBackground />
       
-      <div className="relative z-10">
+      <div className="relative z-10 min-h-screen">
         <Header onConnectClick={() => setIsContactModalOpen(true)} />
         
         <main className="container mx-auto px-4 py-8 space-y-12 max-w-screen-xl">
