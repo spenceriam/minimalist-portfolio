@@ -16,13 +16,13 @@ export default function AnimatedBackground() {
   useEffect(() => {
     const generateStars = () => {
       const newStars: Star[] = [];
-      for (let i = 0; i < 80; i++) {
+      for (let i = 0; i < 100; i++) {
         newStars.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 100,
-          size: Math.random() * 3 + 1.5,
-          opacity: Math.random() * 0.6 + 0.2,
+          size: Math.random() * 2 + 0.5,
+          opacity: Math.random() * 0.4 + 0.1,
           duration: Math.random() * 4 + 3,
         });
       }
@@ -34,20 +34,17 @@ export default function AnimatedBackground() {
 
   return (
     <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-slate-50/40" />
-      
       {/* Constellation lines */}
-      <svg className="absolute inset-0 w-full h-full opacity-20">
+      <svg className="absolute inset-0 w-full h-full opacity-10">
         <defs>
           <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.2" />
+            <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#22d3ee" stopOpacity="0.1" />
           </linearGradient>
         </defs>
-        {stars.slice(0, 12).map((star, index) => {
-          const nextStar = stars[(index + 1) % 12];
+        {stars.slice(0, 15).map((star, index) => {
+          const nextStar = stars[(index + 1) % 15];
           if (!nextStar) return null;
           
           return (
@@ -58,12 +55,12 @@ export default function AnimatedBackground() {
               x2={`${nextStar.x}%`}
               y2={`${nextStar.y}%`}
               stroke="url(#lineGradient)"
-              strokeWidth="1"
+              strokeWidth="0.5"
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.6 }}
+              animate={{ pathLength: 1, opacity: 0.4 }}
               transition={{ 
-                duration: 3, 
-                delay: index * 0.3,
+                duration: 4, 
+                delay: index * 0.2,
                 ease: 'easeInOut'
               }}
             />
@@ -81,13 +78,13 @@ export default function AnimatedBackground() {
             top: `${star.y}%`,
             width: `${star.size}px`,
             height: `${star.size}px`,
-            background: `radial-gradient(circle, rgba(59, 130, 246, ${star.opacity}) 0%, rgba(139, 92, 246, ${star.opacity * 0.8}) 50%, rgba(6, 182, 212, ${star.opacity * 0.6}) 100%)`,
-            boxShadow: `0 0 ${star.size * 2}px rgba(59, 130, 246, ${star.opacity * 0.5})`,
+            background: `radial-gradient(circle, rgba(96, 165, 250, ${star.opacity}) 0%, rgba(167, 139, 250, ${star.opacity * 0.7}) 50%, rgba(34, 211, 238, ${star.opacity * 0.5}) 100%)`,
+            boxShadow: `0 0 ${star.size * 3}px rgba(96, 165, 250, ${star.opacity * 0.3})`,
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
-            opacity: [0, star.opacity, star.opacity * 0.7, star.opacity, 0],
-            scale: [0, 1, 1.2, 1, 0],
+            opacity: [0, star.opacity, star.opacity * 0.5, star.opacity, 0],
+            scale: [0, 1, 1.1, 1, 0],
           }}
           transition={{
             duration: star.duration,
@@ -98,24 +95,24 @@ export default function AnimatedBackground() {
         />
       ))}
 
-      {/* Floating particles */}
-      {Array.from({ length: 20 }).map((_, i) => (
+      {/* Subtle floating particles */}
+      {Array.from({ length: 30 }).map((_, i) => (
         <motion.div
           key={`particle-${i}`}
-          className="absolute w-1 h-1 bg-blue-300/40 rounded-full"
+          className="absolute w-0.5 h-0.5 bg-blue-400/20 rounded-full"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
           }}
           animate={{
-            y: [0, -20, 0],
-            x: [0, Math.random() * 10 - 5, 0],
-            opacity: [0.2, 0.6, 0.2],
+            y: [0, -30, 0],
+            x: [0, Math.random() * 20 - 10, 0],
+            opacity: [0.1, 0.3, 0.1],
           }}
           transition={{
-            duration: Math.random() * 3 + 4,
+            duration: Math.random() * 5 + 6,
             repeat: Infinity,
-            delay: Math.random() * 2,
+            delay: Math.random() * 3,
             ease: 'easeInOut',
           }}
         />

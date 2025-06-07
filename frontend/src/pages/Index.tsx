@@ -11,7 +11,7 @@ export default function Index() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen w-full m-0 p-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20">
+    <div className="relative min-h-screen w-full m-0 p-0">
       <AnimatedBackground />
       
       <div className="relative z-10 min-h-screen">
@@ -24,15 +24,15 @@ export default function Index() {
         </main>
 
         {/* Enhanced Footer */}
-        <footer className="relative z-10 py-8 mt-16 border-t border-slate-200/50 backdrop-blur-sm">
+        <footer className="relative z-10 py-8 mt-16 border-t border-slate-700/50 backdrop-blur-sm">
           <div className="container mx-auto px-4 text-center max-w-screen-xl">
-            <p className="text-slate-600 text-sm">
+            <p className="text-slate-300 text-sm">
               Created by Spencer with{' '}
               <motion.a
                 href="https://von.dev/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent bg-size-200 hover:scale-105 transition-transform duration-200"
+                className="font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent bg-size-200 hover:scale-105 transition-transform duration-200"
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
