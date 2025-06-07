@@ -111,7 +111,7 @@ const Header = ({ onConnectClick }: HeaderProps) => {
           </motion.div>
           
           <div>
-            <h1 className="text-5xl sm:text-6xl font-light tracking-tight gradient-text mb-4">
+            <h1 className="text-5xl sm:text-6xl font-light tracking-tight text-gradient mb-4">
               Hi, I'm Spencer
             </h1>
             <div className="flex flex-wrap items-center justify-center gap-2 mb-4 max-w-2xl">
@@ -170,7 +170,7 @@ const Header = ({ onConnectClick }: HeaderProps) => {
         </motion.div>
         
         <motion.p 
-          className="text-xl text-blue-light max-w-2xl mx-auto text-balance leading-relaxed"
+          className="text-xl text-slate-300 max-w-2xl mx-auto text-balance leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -187,14 +187,14 @@ const Header = ({ onConnectClick }: HeaderProps) => {
       >
         <Button 
           onClick={onConnectClick}
-          className="bg-navy-medium hover:bg-navy-dark text-cream border-2 border-blue-light hover:border-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="glass-button text-white hover:text-white"
           size="lg"
         >
           <Mail className="h-4 w-4 mr-2" />
           Let's Connect
         </Button>
         <Button 
-          className="bg-navy-medium hover:bg-navy-dark text-cream border-2 border-blue-light hover:border-cream shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="glass-button text-white hover:text-white"
           size="lg"
           asChild
         >
