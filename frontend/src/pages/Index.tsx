@@ -1,55 +1,67 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import Header from "@/components/Header";
-import WorkExperienceSection from "@/components/WorkExperienceSection";
-import EducationSection from "@/components/EducationSection";
-import GithubSection from "@/components/GithubSection";
-import ContactModal from "@/components/ContactModal";
+import Header from '@/components/Header';
+import GithubSection from '@/components/GithubSection';
+import WorkExperienceSection from '@/components/WorkExperienceSection';
+import EducationSection from '@/components/EducationSection';
+import ContactModal from '@/components/ContactModal';
+import AnimatedBackground from '@/components/AnimatedBackground';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
-const Index = () => {
+export default function Index() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-  console.log("Index component rendered, isContactModalOpen:", isContactModalOpen);
-
-  const handleConnectClick = () => {
-    console.log("Let's Connect button clicked!");
-    console.log("Current state before:", isContactModalOpen);
-    setIsContactModalOpen(true);
-    console.log("State should now be true");
-  };
-
   return (
-    <div className="min-h-screen bg-navy-dark text-cream m-0 p-0">
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-16">
-        <Header onConnectClick={handleConnectClick} />
+    <div className="relative min-h-screen w-full m-0 p-0 bg-gradient-to-br from-slate-50 to-slate-100">
+      <AnimatedBackground />
+      
+      <div className="relative z-10">
+        <Header onConnectClick={() => setIsContactModalOpen(true)} />
         
-        <main className="space-y-16">
+        <main className="container mx-auto px-4 py-8 space-y-12 max-w-screen-xl">
+          <GithubSection />
           <WorkExperienceSection />
           <EducationSection />
-          <GithubSection />
         </main>
 
-        <motion.footer 
-          className="mt-20 pt-8 border-t border-purple-200 text-center text-sm text-muted-foreground"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <p>Created by Spencer with Von.dev. Built with React, Tailwind CSS & good vibes ✨</p>
-        </motion.footer>
+        {/* Enhanced Footer */}
+        <footer className="relative z-10 py-8 mt-16 border-t border-slate-200/50 backdrop-blur-sm">
+          <div className="container mx-auto px-4 text-center max-w-screen-xl">
+            <p className="text-slate-600 text-sm">
+              Created by Spencer with{' '}
+              <motion.a
+                href="https://von.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent bg-size-200 hover:scale-105 transition-transform duration-200"
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                style={{
+                  backgroundSize: '200% 200%',
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  textShadow: '0 0 8px rgba(59, 130, 246, 0.5)',
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Von.dev
+              </motion.a>
+              . Built with React, Tailwind CSS & good vibes ✨
+            </p>
+          </div>
+        </footer>
       </div>
-
-      {/* Contact Modal */}
+      
       <ContactModal 
         isOpen={isContactModalOpen} 
-        onClose={() => {
-          console.log("Modal close requested");
-          setIsContactModalOpen(false);
-        }} 
+        onClose={() => setIsContactModalOpen(false)} 
       />
     </div>
   );
-};
-
-export default Index;
+}

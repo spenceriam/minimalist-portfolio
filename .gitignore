@@ -1,8 +1,6 @@
 node_modules/
 .config/
 .env
-.env.local
-.env.production
 .next/
 .cache/
 .netlify/
@@ -10,4 +8,3 @@ node_modules/
 dist/
 build/
 tmp/
-backend/
