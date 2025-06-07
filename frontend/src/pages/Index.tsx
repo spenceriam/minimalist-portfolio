@@ -11,7 +11,7 @@ export default function Index() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen w-full m-0 p-0">
+    <div className="relative min-h-screen w-full m-0 p-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <AnimatedBackground />
       
       <div className="relative z-10 min-h-screen">
