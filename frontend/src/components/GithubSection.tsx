@@ -103,7 +103,12 @@ const GithubSection = () => {
                     whileHover={{ scale: 1.02, y: -2 }}
                     viewport={{ once: true }}
                   >
-                    <div className="flex flex-col gap-3">
+                    <motion.div
+                      className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      layoutId={`project-bg-${project.name}`}
+                    />
+                    
+                    <div className="flex flex-col gap-3 relative z-10">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <span className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors block mb-1">
@@ -131,11 +136,6 @@ const GithubSection = () => {
                         </Button>
                       </a>
                     </div>
-                    
-                    <motion.div
-                      className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      layoutId={`project-bg-${project.name}`}
-                    />
                   </motion.div>
                 ))}
               </div>
