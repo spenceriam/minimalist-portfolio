@@ -1,25 +1,45 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { Briefcase, Calendar, MapPin, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 const WorkExperienceSection = () => {
   const experiences = [
     {
-      title: "Product Manager",
-      company: "Von.dev",
-      location: "Remote",
-      period: "2024 - Present",
-      description: "Leading product strategy and development for AI-powered development tools. Collaborating with engineering teams to deliver innovative solutions that enhance developer productivity.",
-      skills: ["Product Strategy", "AI/ML", "Team Leadership", "User Research"]
+      title: "Senior Business Analyst",
+      company: "Zebra Technologies",
+      location: "Lincolnshire, IL",
+      period: "Sep 2018 - Present",
+      description: "Leading pre-sales quoting solutions in Salesforce as both Business Analyst and Product Owner. Specializing in requirements gathering, solution wireframing, and cross-functional collaboration with IT development teams. Translating complex business needs into actionable development solutions.",
+      skills: ["Product Strategy", "Salesforce", "Requirements Gathering", "Cross-functional Leadership"],
+      vibe: "🎯 Product ownership mindset"
     },
     {
-      title: "Associate Product Manager",
-      company: "Vibe",
-      location: "San Francisco, CA",
-      period: "2023 - 2024",
-      description: "Managed product roadmap for collaboration features, resulting in 40% increase in user engagement. Led cross-functional teams to deliver key product milestones.",
-      skills: ["Product Management", "Data Analysis", "Cross-functional Leadership", "User Experience"]
+      title: "Enterprise Systems Analyst II",
+      company: "Zebra Technologies",
+      location: "Lincolnshire, IL",
+      period: "Feb 2013 - Sep 2018",
+      description: "Business Systems Analyst specializing in Oracle ERP WMS and Inventory systems. Led shipping execution using Creative Logistics Solutions and Bluejay's Kewill/Parcel. Designed and implemented solutions while conducting comprehensive system testing and cross-functional collaboration.",
+      skills: ["Oracle ERP", "WMS", "System Integration", "Testing"],
+      vibe: "⚙️ Systems integration expert"
+    },
+    {
+      title: "Client System Administrator II",
+      company: "Zebra Technologies",
+      location: "Vernon Hills, IL",
+      period: "Dec 2011 - Feb 2013",
+      description: "Help Desk administrator managing tickets across multiple systems including Active Directory, Exchange, Oracle Applications, and Java applications. Focused on delivering high-quality customer service and maintaining security compliance.",
+      skills: ["Active Directory", "Exchange", "Oracle Applications", "Customer Service"],
+      vibe: "🛠️ Problem-solving focused"
+    },
+    {
+      title: "Regional IT Support",
+      company: "Passages Hospice",
+      location: "Swansea, IL",
+      period: "Feb 2010 - Sep 2011",
+      description: "Provided comprehensive IT support across multiple office locations, managing everything from mobile devices to networking equipment. Handled inventory management, staff training, and created marketing materials while maintaining 24/7 support availability.",
+      skills: ["IT Support", "Network Management", "Training", "Inventory Management"],
+      vibe: "🌐 Multi-location support"
     }
   ];
 
@@ -39,6 +59,12 @@ const WorkExperienceSection = () => {
           <Briefcase className="h-6 w-6 text-blue-400" />
         </motion.div>
         <h2 className="text-2xl font-medium text-white">Work Experience</h2>
+        <motion.div
+          animate={{ rotate: [0, 10, -10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+        >
+          <TrendingUp className="h-5 w-5 text-green-400" />
+        </motion.div>
       </div>
       
       <div className="space-y-4">
@@ -68,6 +94,9 @@ const WorkExperienceSection = () => {
                         <span>{experience.location}</span>
                       </div>
                     </div>
+                    {experience.vibe && (
+                      <p className="text-sm text-blue-400 mb-3">{experience.vibe}</p>
+                    )}
                   </div>
                 </div>
                 
