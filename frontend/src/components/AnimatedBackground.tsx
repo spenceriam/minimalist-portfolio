@@ -479,7 +479,7 @@ export default function AnimatedBackground() {
       {/* Animated Galaxy-Class Starship - Proper Straight Line Travel */}
       <motion.div
         key={starshipKey}
-        className="absolute z-10 w-24 h-24"
+        className="absolute z-10 w-20 h-20"
         style={{
           left: `${starshipPath.startX}%`,
           top: `${starshipPath.startY}%`,
