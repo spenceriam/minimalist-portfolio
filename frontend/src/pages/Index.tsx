@@ -14,7 +14,7 @@ export default function Index() {
     <div className="relative min-h-screen w-full m-0 p-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <AnimatedBackground />
       
-      <div className="relative z-10 min-h-screen">
+      <div className="relative z-10 min-h-screen pt-8 sm:pt-12 lg:pt-16">
         <Header onConnectClick={() => setIsContactModalOpen(true)} />
         
         <main className="container mx-auto px-4 py-8 space-y-12 max-w-screen-xl">
