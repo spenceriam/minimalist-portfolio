@@ -30,10 +30,17 @@ interface AnimationState {
   cycle: number;
 }
 
+interface StarshipPosition {
+  x: number;
+  y: number;
+  rotation: number;
+}
+
 export default function AnimatedBackground() {
   const [stars, setStars] = useState<Star[]>([]);
   const [constellations, setConstellations] = useState<Constellation[]>([]);
   const [animationState, setAnimationState] = useState<AnimationState>({ phase: 'drawing', cycle: 0 });
+  const [starshipPosition, setStarshipPosition] = useState<StarshipPosition>({ x: 10, y: 50, rotation: 0 });
 
   // Base constellation templates
   const constellationTemplates = [
@@ -73,6 +80,22 @@ export default function AnimatedBackground() {
       size: { width: 15, height: 14 }
     }
   ];
+
+  // Starship animation management
+  useEffect(() => {
+    const moveStarship = () => {
+      const newX = Math.random() * 80 + 10; // Keep within 10-90% of screen
+      const newY = Math.random() * 60 + 20; // Keep within 20-80% of screen
+      const newRotation = Math.random() * 360;
+      
+      setStarshipPosition({ x: newX, y: newY, rotation: newRotation });
+    };
+
+    // Move starship every 8-12 seconds
+    const interval = setInterval(moveStarship, Math.random() * 4000 + 8000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   // Check if two rectangles overlap
   const rectanglesOverlap = (rect1: any, rect2: any, buffer = 8) => {
@@ -402,6 +425,75 @@ export default function AnimatedBackground() {
           </g>
         ))}
       </svg>
+
+      {/* Animated Starship */}
+      <motion.div
+        className="absolute w-24 h-24 z-10"
+        style={{
+          left: `${starshipPosition.x}%`,
+          top: `${starshipPosition.y}%`,
+        }}
+        animate={{
+          x: `${starshipPosition.x}vw`,
+          y: `${starshipPosition.y}vh`,
+          rotate: starshipPosition.rotation,
+        }}
+        transition={{
+          duration: 6,
+          ease: "easeInOut",
+        }}
+        initial={false}
+      >
+        <svg
+          width="100"
+          height="100"
+          viewBox="0 0 200 200"
+          className="drop-shadow-lg"
+        >
+          <defs>
+            <linearGradient id="hullGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#e2e8f0" />
+              <stop offset="50%" stopColor="#cbd5e1" />
+              <stop offset="100%" stopColor="#94a3b8" />
+            </linearGradient>
+            <linearGradient id="nacellGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#3b82f6" />
+              <stop offset="50%" stopColor="#1d4ed8" />
+              <stop offset="100%" stopColor="#1e40af" />
+            </linearGradient>
+            <radialGradient id="bridgeGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#f97316" />
+              <stop offset="100%" stopColor="#ea580c" />
+            </radialGradient>
+          </defs>
+          
+          {/* Main Saucer Section */}
+          <ellipse cx="100" cy="80" rx="80" ry="40" fill="url(#hullGradient)" stroke="#64748b" strokeWidth="2"/>
+          
+          {/* Bridge Section */}
+          <ellipse cx="100" cy="75" rx="25" ry="12" fill="url(#bridgeGradient)" stroke="#dc2626" strokeWidth="1"/>
+          
+          {/* Engineering Hull */}
+          <ellipse cx="100" cy="140" rx="15" ry="35" fill="url(#hullGradient)" stroke="#64748b" strokeWidth="2"/>
+          
+          {/* Nacelles */}
+          <ellipse cx="60" cy="160" rx="8" ry="25" fill="url(#nacellGradient)" stroke="#1e40af" strokeWidth="1"/>
+          <ellipse cx="140" cy="160" rx="8" ry="25" fill="url(#nacellGradient)" stroke="#1e40af" strokeWidth="1"/>
+          
+          {/* Nacelle Glow */}
+          <ellipse cx="60" cy="170" rx="4" ry="8" fill="#60a5fa" opacity="0.8"/>
+          <ellipse cx="140" cy="170" rx="4" ry="8" fill="#60a5fa" opacity="0.8"/>
+          
+          {/* Hull Details */}
+          <circle cx="100" cy="75" r="3" fill="#dc2626"/>
+          <rect x="95" y="120" width="10" height="20" fill="#64748b" rx="2"/>
+          
+          {/* Saucer Details */}
+          <circle cx="80" cy="70" r="2" fill="#64748b"/>
+          <circle cx="120" cy="70" r="2" fill="#64748b"/>
+          <circle cx="100" cy="90" r="2" fill="#64748b"/>
+        </svg>
+      </motion.div>
 
       {/* Constellation stars */}
       {constellations.map((constellation) =>
