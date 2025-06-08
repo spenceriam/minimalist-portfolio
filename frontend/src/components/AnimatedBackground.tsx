@@ -43,7 +43,8 @@ export default function AnimatedBackground() {
         { x: 0, y: 5 }, { x: 5, y: 3 }, { x: 10, y: 7 }, { x: 15, y: 10 },
         { x: 17, y: 15 }, { x: 13, y: 17 }, { x: 10, y: 20 }
       ],
-      connections: [[0,1], [1,2], [2,3], [3,4], [4,5], [5,6]]
+      connections: [[0,1], [1,2], [2,3], [3,4], [4,5], [5,6]],
+      size: { width: 20, height: 18 }
     },
     {
       name: "Orion",
@@ -51,14 +52,16 @@ export default function AnimatedBackground() {
         { x: 5, y: 5 }, { x: 15, y: 10 }, { x: 8, y: 15 }, { x: 10, y: 17 },
         { x: 12, y: 19 }, { x: 7, y: 23 }, { x: 17, y: 25 }
       ],
-      connections: [[0,1], [2,3], [3,4], [0,2], [1,6], [5,6]]
+      connections: [[0,1], [2,3], [3,4], [0,2], [1,6], [5,6]],
+      size: { width: 18, height: 22 }
     },
     {
       name: "Cassiopeia",
       points: [
         { x: 5, y: 5 }, { x: 10, y: 2 }, { x: 15, y: 8 }, { x: 20, y: 5 }, { x: 23, y: 10 }
       ],
-      connections: [[0,1], [1,2], [2,3], [3,4]]
+      connections: [[0,1], [1,2], [2,3], [3,4]],
+      size: { width: 20, height: 10 }
     },
     {
       name: "Leo",
@@ -66,21 +69,105 @@ export default function AnimatedBackground() {
         { x: 5, y: 5 }, { x: 10, y: 3 }, { x: 15, y: 7 }, { x: 17, y: 13 },
         { x: 13, y: 15 }, { x: 7, y: 10 }
       ],
-      connections: [[0,1], [1,2], [0,5], [3,4], [4,5]]
+      connections: [[0,1], [1,2], [0,5], [3,4], [4,5]],
+      size: { width: 15, height: 14 }
     }
   ];
 
-  const generateRandomPosition = useCallback(() => {
-    const margin = 25; // Keep constellations away from edges
-    return {
-      x: margin + Math.random() * (100 - 2 * margin - 25), // 25 is constellation width
-      y: margin + Math.random() * (100 - 2 * margin - 20)  // 20 is constellation height
-    };
+  // Check if two rectangles overlap
+  const rectanglesOverlap = (rect1: any, rect2: any, buffer = 8) => {
+    return !(
+      rect1.x + rect1.width + buffer < rect2.x ||
+      rect2.x + rect2.width + buffer < rect1.x ||
+      rect1.y + rect1.height + buffer < rect2.y ||
+      rect2.y + rect2.height + buffer < rect1.y
+    );
+  };
+
+  // Generate non-overlapping positions using grid-based approach
+  const generateNonOverlappingPositions = useCallback(() => {
+    const positions: Array<{ x: number; y: number; width: number; height: number }> = [];
+    const margin = 15; // Margin from screen edges
+    const maxAttempts = 50;
+
+    // Create a grid of possible positions
+    const gridSize = 25;
+    const gridPositions: Array<{ x: number; y: number }> = [];
+    
+    for (let x = margin; x <= 100 - margin - gridSize; x += gridSize) {
+      for (let y = margin; y <= 100 - margin - gridSize; y += gridSize) {
+        gridPositions.push({ x, y });
+      }
+    }
+
+    // Shuffle grid positions for randomness
+    const shuffledPositions = gridPositions.sort(() => Math.random() - 0.5);
+
+    constellationTemplates.forEach((template) => {
+      let placed = false;
+      let attempts = 0;
+
+      for (const gridPos of shuffledPositions) {
+        if (attempts >= maxAttempts) break;
+        attempts++;
+
+        const newRegion = {
+          x: gridPos.x,
+          y: gridPos.y,
+          width: template.size.width,
+          height: template.size.height
+        };
+
+        // Check if this position overlaps with any existing constellation
+        const overlaps = positions.some(existingRegion => 
+          rectanglesOverlap(newRegion, existingRegion)
+        );
+
+        if (!overlaps) {
+          positions.push(newRegion);
+          placed = true;
+          break;
+        }
+      }
+
+      // Fallback: if we can't place without overlap, place in a corner
+      if (!placed) {
+        const fallbackPositions = [
+          { x: margin, y: margin },
+          { x: 100 - margin - template.size.width, y: margin },
+          { x: margin, y: 100 - margin - template.size.height },
+          { x: 100 - margin - template.size.width, y: 100 - margin - template.size.height }
+        ];
+
+        for (const fallback of fallbackPositions) {
+          const newRegion = {
+            x: fallback.x,
+            y: fallback.y,
+            width: template.size.width,
+            height: template.size.height
+          };
+
+          const overlaps = positions.some(existingRegion => 
+            rectanglesOverlap(newRegion, existingRegion)
+          );
+
+          if (!overlaps) {
+            positions.push(newRegion);
+            break;
+          }
+        }
+      }
+    });
+
+    return positions;
   }, []);
 
   const createConstellations = useCallback(() => {
+    const positions = generateNonOverlappingPositions();
+    
     return constellationTemplates.map((template, index) => {
-      const position = generateRandomPosition();
+      const position = positions[index] || { x: 20 + index * 30, y: 20, width: template.size.width, height: template.size.height };
+      
       return {
         id: index + 1,
         name: template.name,
@@ -89,27 +176,36 @@ export default function AnimatedBackground() {
           y: position.y + point.y
         })),
         connections: template.connections,
-        region: { 
-          x: position.x, 
-          y: position.y, 
-          width: 25, 
-          height: 20 
-        }
+        region: position
       };
     });
-  }, [generateRandomPosition]);
+  }, [generateNonOverlappingPositions]);
 
   useEffect(() => {
     const initialConstellations = createConstellations();
     setConstellations(initialConstellations);
 
-    // Generate background stars with exclusion zones
+    // Generate background stars with exclusion zones around constellations
     const generateStars = () => {
       const newStars: Star[] = [];
+      const exclusionZones = initialConstellations.map(c => c.region);
       
-      for (let i = 0; i < 120; i++) {
-        const x = Math.random() * 100;
-        const y = Math.random() * 100;
+      for (let i = 0; i < 100; i++) {
+        let x, y;
+        let attempts = 0;
+        
+        // Try to place star outside constellation regions
+        do {
+          x = Math.random() * 100;
+          y = Math.random() * 100;
+          attempts++;
+        } while (
+          attempts < 30 && 
+          exclusionZones.some(zone => 
+            x >= zone.x - 5 && x <= zone.x + zone.width + 5 &&
+            y >= zone.y - 5 && y <= zone.y + zone.height + 5
+          )
+        );
         
         newStars.push({
           id: i,
