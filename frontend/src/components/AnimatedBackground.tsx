@@ -36,6 +36,7 @@ interface StarshipPath {
   endX: number;
   endY: number;
   duration: number;
+  rotation: number;
 }
 
 export default function AnimatedBackground() {
@@ -43,11 +44,12 @@ export default function AnimatedBackground() {
   const [constellations, setConstellations] = useState<Constellation[]>([]);
   const [animationState, setAnimationState] = useState<AnimationState>({ phase: 'drawing', cycle: 0 });
   const [starshipPath, setStarshipPath] = useState<StarshipPath>({ 
-    startX: -10, 
+    startX: -15, 
     startY: 50, 
-    endX: 110, 
+    endX: 115, 
     endY: 50, 
-    duration: 15 
+    duration: 20,
+    rotation: 90
   });
   const [starshipKey, setStarshipKey] = useState(0);
 
@@ -90,38 +92,57 @@ export default function AnimatedBackground() {
     }
   ];
 
-  // Starship animation management - straight line travel
+  // Calculate rotation angle based on direction
+  const calculateRotation = (startX: number, startY: number, endX: number, endY: number) => {
+    const deltaX = endX - startX;
+    const deltaY = endY - startY;
+    const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+    return angle + 90; // Add 90 degrees since top of image is front of ship
+  };
+
+  // Starship animation management - straight line travel with proper orientation
   useEffect(() => {
     const generateNewPath = () => {
       const paths = [
         // Left to right (horizontal)
-        { startX: -10, startY: 30, endX: 110, endY: 30, duration: 20 },
-        { startX: -10, startY: 50, endX: 110, endY: 50, duration: 18 },
-        { startX: -10, startY: 70, endX: 110, endY: 70, duration: 22 },
+        { startX: -15, startY: 25, endX: 115, endY: 25, duration: 25 },
+        { startX: -15, startY: 40, endX: 115, endY: 40, duration: 22 },
+        { startX: -15, startY: 55, endX: 115, endY: 55, duration: 28 },
+        { startX: -15, startY: 70, endX: 115, endY: 70, duration: 24 },
         // Right to left (horizontal)
-        { startX: 110, startY: 25, endX: -10, endY: 25, duration: 19 },
-        { startX: 110, startY: 45, endX: -10, endY: 45, duration: 21 },
-        { startX: 110, startY: 65, endX: -10, endY: 65, duration: 17 },
+        { startX: 115, startY: 30, endX: -15, endY: 30, duration: 26 },
+        { startX: 115, startY: 45, endX: -15, endY: 45, duration: 23 },
+        { startX: 115, startY: 60, endX: -15, endY: 60, duration: 27 },
+        { startX: 115, startY: 75, endX: -15, endY: 75, duration: 21 },
         // Top to bottom (vertical)
-        { startX: 20, startY: -10, endX: 20, endY: 110, duration: 16 },
-        { startX: 50, startY: -10, endX: 50, endY: 110, duration: 18 },
-        { startX: 80, startY: -10, endX: 80, endY: 110, duration: 20 },
+        { startX: 20, startY: -15, endX: 20, endY: 115, duration: 20 },
+        { startX: 35, startY: -15, endX: 35, endY: 115, duration: 24 },
+        { startX: 50, startY: -15, endX: 50, endY: 115, duration: 22 },
+        { startX: 65, startY: -15, endX: 65, endY: 115, duration: 26 },
+        { startX: 80, startY: -15, endX: 80, endY: 115, duration: 23 },
         // Bottom to top (vertical)
-        { startX: 30, startY: 110, endX: 30, endY: -10, duration: 19 },
-        { startX: 60, startY: 110, endX: 60, endY: -10, duration: 17 },
-        { startX: 90, startY: 110, endX: 90, endY: -10, duration: 21 },
+        { startX: 25, startY: 115, endX: 25, endY: -15, duration: 25 },
+        { startX: 40, startY: 115, endX: 40, endY: -15, duration: 21 },
+        { startX: 55, startY: 115, endX: 55, endY: -15, duration: 27 },
+        { startX: 70, startY: 115, endX: 70, endY: -15, duration: 24 },
+        { startX: 85, startY: 115, endX: 85, endY: -15, duration: 22 },
       ];
       
       const randomPath = paths[Math.floor(Math.random() * paths.length)];
-      setStarshipPath(randomPath);
+      const rotation = calculateRotation(randomPath.startX, randomPath.startY, randomPath.endX, randomPath.endY);
+      
+      setStarshipPath({
+        ...randomPath,
+        rotation
+      });
       setStarshipKey(prev => prev + 1); // Force re-render of animation
     };
 
     // Start first path immediately
     generateNewPath();
 
-    // Generate new path every 25-35 seconds
-    const interval = setInterval(generateNewPath, Math.random() * 10000 + 25000);
+    // Generate new path every 30-45 seconds
+    const interval = setInterval(generateNewPath, Math.random() * 15000 + 30000);
     
     return () => clearInterval(interval);
   }, []);
@@ -455,13 +476,15 @@ export default function AnimatedBackground() {
         ))}
       </svg>
 
-      {/* Animated Galaxy-Class Starship - Straight Line Travel */}
+      {/* Animated Galaxy-Class Starship - Proper Straight Line Travel */}
       <motion.div
         key={starshipKey}
-        className="absolute z-10"
-        initial={{
+        className="absolute z-10 w-24 h-24"
+        style={{
           left: `${starshipPath.startX}%`,
           top: `${starshipPath.startY}%`,
+          transform: `rotate(${starshipPath.rotation}deg)`,
+          transformOrigin: 'center center',
         }}
         animate={{
           left: `${starshipPath.endX}%`,
@@ -470,14 +493,12 @@ export default function AnimatedBackground() {
         transition={{
           duration: starshipPath.duration,
           ease: "linear",
-          repeat: Infinity,
-          repeatDelay: 5,
         }}
       >
         <img
           src="/GalaxyClass.png"
           alt="Galaxy-Class Starship"
-          className="w-24 h-24 object-contain drop-shadow-lg opacity-70 hover:opacity-90 transition-opacity duration-300"
+          className="w-full h-full object-contain drop-shadow-lg opacity-60 hover:opacity-80 transition-opacity duration-300"
           style={{
             filter: 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.4))',
           }}
