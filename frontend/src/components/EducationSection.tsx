@@ -1,40 +1,18 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Calendar, Award } from "lucide-react";
+import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
 import { motion } from "framer-motion";
 
-interface Education {
-  degree: string;
-  school: string;
-  period: string;
-  description: string;
-  achievement?: string;
-  vibe?: string;
-}
-
 const EducationSection = () => {
-  const education: Education[] = [
+  const education = [
     {
-      degree: "Bachelor of Science - Information Technology",
-      school: "University of Phoenix",
-      period: "2018 - 2020",
-      description: "Advanced software development focus with modern programming practices and system design principles.",
-      vibe: "🎓 Advanced development focus"
-    },
-    {
-      degree: "Bachelor's Degree - Technical Management",
-      school: "DeVry University, College of Business & Management",
-      period: "2015 - 2016",
-      description: "Information Technology specialization with Global Supply Chain coursework, bridging technical and business domains.",
-      vibe: "🌐 Business-tech bridge"
-    },
-    {
-      degree: "Associate's Degree - Computer Science, Computer Network Systems",
-      school: "ITT Technical Institute",
-      period: "2008 - 2010",
-      description: "Foundation in computer science principles and network systems that launched my technology career.",
-      achievement: "Nominated and accepted into The National Society of Leadership and Success",
-      vibe: "💻 Technical foundation"
+      degree: "Bachelor of Science in Computer Science",
+      school: "University of California, Berkeley",
+      location: "Berkeley, CA",
+      period: "2019 - 2023",
+      description: "Focused on software engineering, data structures, and algorithms. Graduated with honors and completed a senior capstone project on machine learning applications.",
+      achievements: ["Dean's List", "CS Honor Society", "Capstone Project Award"],
+      coursework: ["Data Structures", "Algorithms", "Machine Learning", "Software Engineering"]
     }
   ];
 
@@ -48,66 +26,98 @@ const EducationSection = () => {
     >
       <div className="flex items-center gap-3">
         <motion.div
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          transition={{ duration: 0.2 }}
+          whileHover={{ rotate: 360 }}
+          transition={{ duration: 0.5 }}
         >
-          <GraduationCap className="h-6 w-6 text-blue-light" />
+          <GraduationCap className="h-6 w-6 text-blue-400" />
         </motion.div>
-        <h2 className="text-2xl font-medium text-cream">Education</h2>
-        <motion.div
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
-        >
-          <Award className="h-5 w-5 text-yellow-400" />
-        </motion.div>
+        <h2 className="text-2xl font-medium text-white">Education</h2>
       </div>
       
-      <div className="space-y-6">
+      <div className="space-y-4">
         {education.map((edu, index) => (
           <motion.div
-            key={index}
+            key={`${edu.school}-${edu.degree}`}
+            className="group"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
             whileHover={{ y: -4 }}
             viewport={{ once: true }}
           >
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 glass-effect">
-              <CardContent className="p-8">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:border-blue-400/60 hover:bg-slate-700/50">
+              <CardContent className="p-6">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                   <div className="flex-1">
-                    <h3 className="text-xl font-medium gradient-text">{edu.degree}</h3>
-                    <p className="text-cream font-medium">{edu.school}</p>
-                    {edu.vibe && (
-                      <p className="text-sm text-blue-light mt-2">{edu.vibe}</p>
-                    )}
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-cream bg-blue-medium/20 px-3 py-1 rounded-full shrink-0 border border-blue-light/30">
-                    <Calendar className="h-4 w-4" />
-                    <span>{edu.period}</span>
+                    <h3 className="text-xl font-medium mb-1 text-gradient">{edu.degree}</h3>
+                    <p className="text-lg text-white mb-2">{edu.school}</p>
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400 mb-3">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        <span>{edu.period}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <MapPin className="h-4 w-4" />
+                        <span>{edu.location}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
-                <p className="text-blue-light leading-relaxed mb-4">
+                <p className="text-slate-300 mb-4 leading-relaxed">
                   {edu.description}
                 </p>
-
-                {edu.achievement && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
-                    viewport={{ once: true }}
-                  >
-                    <Badge 
-                      variant="secondary" 
-                      className="bg-yellow-500/20 text-yellow-300 hover:bg-yellow-500/30 transition-all duration-300 border border-yellow-400/30"
-                    >
-                      <Award className="h-3 w-3 mr-1" />
-                      {edu.achievement}
-                    </Badge>
-                  </motion.div>
+                
+                {edu.achievements && (
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Award className="h-4 w-4 text-blue-400" />
+                      <span className="text-sm font-medium text-white">Achievements</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {edu.achievements.map((achievement, achievementIndex) => (
+                        <motion.div
+                          key={achievement}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: achievementIndex * 0.05 }}
+                          viewport={{ once: true }}
+                        >
+                          <Badge 
+                            variant="secondary" 
+                            className="bg-blue-900/30 text-blue-300 border-blue-700/50 hover:bg-blue-800/40 hover:text-blue-200 transition-all duration-200"
+                          >
+                            {achievement}
+                          </Badge>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
                 )}
+                
+                <div className="flex flex-wrap gap-2">
+                  {edu.coursework.map((course, courseIndex) => (
+                    <motion.div
+                      key={course}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: courseIndex * 0.05 }}
+                      viewport={{ once: true }}
+                    >
+                      <Badge 
+                        variant="secondary" 
+                        className="bg-slate-700/50 text-slate-300 border-slate-600/50 hover:bg-slate-600/50 hover:text-white transition-all duration-200"
+                      >
+                        {course}
+                      </Badge>
+                    </motion.div>
+                  ))}
+                </div>
+                
+                <motion.div
+                  className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  layoutId={`education-bg-${edu.school}`}
+                />
               </CardContent>
             </Card>
           </motion.div>
