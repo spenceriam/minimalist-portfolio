@@ -116,21 +116,20 @@ const GithubSection = () => {
                         <Code className="h-4 w-4 text-slate-400 group-hover:text-blue-400 transition-colors flex-shrink-0 ml-2" />
                       </div>
                       
-                      <Button
-                        size="sm"
-                        className="project-button text-white hover:text-white w-full text-xs"
-                        asChild
+                      <a 
+                        href={project.url}
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-block w-full"
                       >
-                        <a 
-                          href={project.url}
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 justify-center"
+                        <Button
+                          size="sm"
+                          className="project-button text-white hover:text-white w-full text-xs"
                         >
-                          <Github className="h-3 w-3" />
-                          {project.description}
-                        </a>
-                      </Button>
+                          <Github className="h-3 w-3 mr-1" />
+                          View Project
+                        </Button>
+                      </a>
                     </div>
                     
                     <motion.div
