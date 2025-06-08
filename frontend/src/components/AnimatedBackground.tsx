@@ -496,7 +496,7 @@ export default function AnimatedBackground() {
         }}
       >
         <img
-          src="/Starship.png"
+          src="/Starship2.png"
           alt="Starship"
           className="w-full h-full object-contain drop-shadow-lg opacity-60 hover:opacity-80 transition-opacity duration-300"
           style={{
