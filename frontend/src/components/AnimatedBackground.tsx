@@ -30,17 +30,26 @@ interface AnimationState {
   cycle: number;
 }
 
-interface StarshipPosition {
-  x: number;
-  y: number;
-  rotation: number;
+interface StarshipPath {
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+  duration: number;
 }
 
 export default function AnimatedBackground() {
   const [stars, setStars] = useState<Star[]>([]);
   const [constellations, setConstellations] = useState<Constellation[]>([]);
   const [animationState, setAnimationState] = useState<AnimationState>({ phase: 'drawing', cycle: 0 });
-  const [starshipPosition, setStarshipPosition] = useState<StarshipPosition>({ x: 10, y: 50, rotation: 0 });
+  const [starshipPath, setStarshipPath] = useState<StarshipPath>({ 
+    startX: -10, 
+    startY: 50, 
+    endX: 110, 
+    endY: 50, 
+    duration: 15 
+  });
+  const [starshipKey, setStarshipKey] = useState(0);
 
   // Base constellation templates
   const constellationTemplates = [
@@ -81,18 +90,38 @@ export default function AnimatedBackground() {
     }
   ];
 
-  // Starship animation management
+  // Starship animation management - straight line travel
   useEffect(() => {
-    const moveStarship = () => {
-      const newX = Math.random() * 80 + 10; // Keep within 10-90% of screen
-      const newY = Math.random() * 60 + 20; // Keep within 20-80% of screen
-      const newRotation = Math.random() * 360;
+    const generateNewPath = () => {
+      const paths = [
+        // Left to right (horizontal)
+        { startX: -10, startY: 30, endX: 110, endY: 30, duration: 20 },
+        { startX: -10, startY: 50, endX: 110, endY: 50, duration: 18 },
+        { startX: -10, startY: 70, endX: 110, endY: 70, duration: 22 },
+        // Right to left (horizontal)
+        { startX: 110, startY: 25, endX: -10, endY: 25, duration: 19 },
+        { startX: 110, startY: 45, endX: -10, endY: 45, duration: 21 },
+        { startX: 110, startY: 65, endX: -10, endY: 65, duration: 17 },
+        // Top to bottom (vertical)
+        { startX: 20, startY: -10, endX: 20, endY: 110, duration: 16 },
+        { startX: 50, startY: -10, endX: 50, endY: 110, duration: 18 },
+        { startX: 80, startY: -10, endX: 80, endY: 110, duration: 20 },
+        // Bottom to top (vertical)
+        { startX: 30, startY: 110, endX: 30, endY: -10, duration: 19 },
+        { startX: 60, startY: 110, endX: 60, endY: -10, duration: 17 },
+        { startX: 90, startY: 110, endX: 90, endY: -10, duration: 21 },
+      ];
       
-      setStarshipPosition({ x: newX, y: newY, rotation: newRotation });
+      const randomPath = paths[Math.floor(Math.random() * paths.length)];
+      setStarshipPath(randomPath);
+      setStarshipKey(prev => prev + 1); // Force re-render of animation
     };
 
-    // Move starship every 8-12 seconds
-    const interval = setInterval(moveStarship, Math.random() * 4000 + 8000);
+    // Start first path immediately
+    generateNewPath();
+
+    // Generate new path every 25-35 seconds
+    const interval = setInterval(generateNewPath, Math.random() * 10000 + 25000);
     
     return () => clearInterval(interval);
   }, []);
@@ -426,28 +455,29 @@ export default function AnimatedBackground() {
         ))}
       </svg>
 
-      {/* Animated Galaxy-Class Starship */}
+      {/* Animated Galaxy-Class Starship - Straight Line Travel */}
       <motion.div
+        key={starshipKey}
         className="absolute z-10"
-        style={{
-          left: `${starshipPosition.x}%`,
-          top: `${starshipPosition.y}%`,
+        initial={{
+          left: `${starshipPath.startX}%`,
+          top: `${starshipPath.startY}%`,
         }}
         animate={{
-          x: `${starshipPosition.x}vw`,
-          y: `${starshipPosition.y}vh`,
-          rotate: starshipPosition.rotation,
+          left: `${starshipPath.endX}%`,
+          top: `${starshipPath.endY}%`,
         }}
         transition={{
-          duration: 8,
-          ease: "easeInOut",
+          duration: starshipPath.duration,
+          ease: "linear",
+          repeat: Infinity,
+          repeatDelay: 5,
         }}
-        initial={false}
       >
         <img
           src="/GalaxyClass.png"
           alt="Galaxy-Class Starship"
-          className="w-24 h-24 object-contain drop-shadow-lg opacity-80 hover:opacity-100 transition-opacity duration-300"
+          className="w-24 h-24 object-contain drop-shadow-lg opacity-70 hover:opacity-90 transition-opacity duration-300"
           style={{
             filter: 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.4))',
           }}
