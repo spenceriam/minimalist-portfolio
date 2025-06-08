@@ -5,12 +5,36 @@ import { motion } from "framer-motion";
 
 const GithubSection = () => {
   const featuredProjects = [
-    { name: "HEICscape", url: "https://github.com/spenceriam/HEICscape" },
-    { name: "InkFrame", url: "https://github.com/spenceriam/InkFrame" },
-    { name: "type-B", url: "https://github.com/spenceriam/type-B" },
-    { name: "meowgenda", url: "https://github.com/spenceriam/meowgenda" },
-    { name: "StorFlo", url: "https://github.com/spenceriam/StorFlo" },
-    { name: "OnboardEase", url: "https://github.com/spenceriam/OnboardEase" }
+    { 
+      name: "This Portfolio", 
+      description: "Minimalist portfolio showcasing modern web development",
+      url: "https://github.com/spenceriam/minimalist-portfolio" 
+    },
+    { 
+      name: "InkFrame", 
+      description: "Raspberry Pi Zero 2 W powered e-ink Photo frame",
+      url: "https://github.com/spenceriam/InkFrame" 
+    },
+    { 
+      name: "Meowgenda", 
+      description: "Smart calendar/share board - Meowgenda",
+      url: "https://github.com/spenceriam/meowgenda" 
+    },
+    { 
+      name: "Media Visualizer", 
+      description: "Label media visualizer for SFDC",
+      url: "https://github.com/spenceriam/mediaVisualizer" 
+    },
+    { 
+      name: "Lion Mystic", 
+      description: "Lion Mystic landing page",
+      url: "https://github.com/spenceriam/LionMysticDesignsLanding" 
+    },
+    { 
+      name: "Num Nom Dash", 
+      description: "Number Munchers inspired mobile web app/game",
+      url: "https://github.com/spenceriam/num-nom-dash" 
+    }
   ];
 
   return (
@@ -80,45 +104,33 @@ const GithubSection = () => {
                     viewport={{ once: true }}
                   >
                     <div className="flex flex-col gap-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">
-                          {project.name}
-                        </span>
-                        <Code className="h-4 w-4 text-slate-400 group-hover:text-blue-400 transition-colors" />
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <span className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors block mb-1">
+                            {project.name}
+                          </span>
+                          <p className="text-xs text-slate-400 leading-relaxed">
+                            {project.description}
+                          </p>
+                        </div>
+                        <Code className="h-4 w-4 text-slate-400 group-hover:text-blue-400 transition-colors flex-shrink-0 ml-2" />
                       </div>
                       
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          className="project-button text-white hover:text-white flex-1 text-xs"
-                          asChild
+                      <Button
+                        size="sm"
+                        className="project-button text-white hover:text-white w-full text-xs"
+                        asChild
+                      >
+                        <a 
+                          href={project.url}
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 justify-center"
                         >
-                          <a 
-                            href={project.url}
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 justify-center"
-                          >
-                            <Eye className="h-3 w-3" />
-                            View
-                          </a>
-                        </Button>
-                        <Button
-                          size="sm"
-                          className="project-button text-white hover:text-white flex-1 text-xs"
-                          asChild
-                        >
-                          <a 
-                            href={project.url}
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 justify-center"
-                          >
-                            <Github className="h-3 w-3" />
-                            Code
-                          </a>
-                        </Button>
-                      </div>
+                          <Github className="h-3 w-3" />
+                          {project.description}
+                        </a>
+                      </Button>
                     </div>
                     
                     <motion.div
