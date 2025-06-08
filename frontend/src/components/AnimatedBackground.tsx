@@ -496,8 +496,8 @@ export default function AnimatedBackground() {
         }}
       >
         <img
-          src="/GalaxyClass.png"
-          alt="Galaxy-Class Starship"
+          src="/Starship.png"
+          alt="Starship"
           className="w-full h-full object-contain drop-shadow-lg opacity-60 hover:opacity-80 transition-opacity duration-300"
           style={{
             filter: 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.4))',
