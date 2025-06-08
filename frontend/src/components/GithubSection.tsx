@@ -65,12 +65,11 @@ const GithubSection = () => {
               <div>
                 <h3 className="text-xl font-medium mb-2 text-gradient">@spenceriam</h3>
                 <p className="text-slate-300 mb-4 leading-relaxed">
-                  Building modern web applications with clean, maintainable code. 
-                  Learning in public and shipping with passion.
+                  Welcome to my digital laboratory! I experiment with forbidden facts, brew pixel potions, and turn coffee into code. Warning: side effects may include bug fixes.
                 </p>
                 <div className="flex items-center gap-2 text-sm text-slate-400">
                   <Zap className="h-4 w-4" />
-                  <span>Currently exploring React & TypeScript</span>
+                  <span>Currently exploring different front end and back end stacks using the power of AI coding/prompt engineering</span>
                 </div>
               </div>
               <Button 
